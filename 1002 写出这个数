@@ -1,0 +1,38 @@
+import java.util.ArrayList;
+import java.util.Scanner;
+
+public class Main {
+	
+	public static int sum(String n) {      //求和函数
+		char[] a = n.toCharArray();          //字符转换字符数组
+		int b = 0;
+		for (int i=0;i<a.length;i++) {
+			b+=(int)a[i]-'0';                  //求和
+		}
+		return b;
+	}
+	
+	public static void print(int n) {     // 输出拼音函数
+		ArrayList<Integer> arrayList = new ArrayList<Integer>();         //动态数组用于存放 求和 的各位数字 
+		String[] pinyin = new String[]{"ling","yi","er","san","si","wu","liu","qi","ba","jiu"};
+		int a=0;
+		while(n!=0) {                        //求各位数字 倒置
+			a = n-(n/10)*10;
+			n = n/10;
+			arrayList.add(a);
+		}
+		for (int i = arrayList.size()-1; i >=0; i--) {
+			if(i==0)
+				System.out.print(pinyin[arrayList.get(i)]);
+			else
+				System.out.print(pinyin[arrayList.get(i)]+' ');     //输出
+		}
+	}
+	
+	public static void main(String[] args) {
+		Scanner in = new Scanner(System.in);
+		String n = in.next();
+		print(sum(n));
+	}
+
+}
